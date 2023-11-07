@@ -65,7 +65,7 @@ def main():
 
         # Check if all passcodes are valid
         if None not in frames and len(frames) == MAX_IMAGES:
-            st.success("You cracked the code, here's another hint:")
+            st.success("You cracked the code, here's another hint: It is Paulsible you could try any of the provided options in our Slack Channel")
         else:
             st.warning("Try harder to get an additional hint")
 
