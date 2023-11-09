@@ -50,17 +50,17 @@ def main():
     st.set_page_config(page_title="Ancient Mosaic Lobby", layout="wide")
 
     # Use custom CSS to set background image
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
+    #st.markdown(
+        #f"""
+        #<style>
+        #.stApp {{
             background-image: url({BACKGROUND_IMAGE_URL});
             background-size: cover;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+        #}}
+        #</style>
+        #""",
+        #unsafe_allow_html=True
+    #)
 
     st.title("Ancient Mosaic Lobby")
 
