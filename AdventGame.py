@@ -44,7 +44,7 @@ def create_final_image(frames):
     return final_img
 
 def main():
-    st.title("GIF Frame Composer")
+    st.title("Welcome to the Chamber of Amazonian Secrets")
 
     # File uploader allows user to add up to 24 GIFs
     uploaded_files = st.file_uploader("Upload GIFs", type="gif", accept_multiple_files=True)
