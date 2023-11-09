@@ -6,7 +6,9 @@ import io
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
 IMAGE_HEIGHT = 6
-PASS_CODES = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]  # Add your list of pass codes here
+
+# Background image placeholder URL
+BACKGROUND_IMAGE_URL = "https://via.placeholder.com/150"  # Replace with your actual image URL
 
 def validate_and_extract_frames(uploaded_files, pass_codes):
     # This will hold the extracted frames
@@ -44,7 +46,39 @@ def create_final_image(frames):
     return final_img
 
 def main():
-    st.title("Welcome to the Chamber of Amazonian Secrets")
+    # Set page config to widen the app and set the title and favicon
+    st.set_page_config(page_title="Ancient Mosaic Lobby", layout="wide")
+
+    # Use custom CSS to set background image
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url({BACKGROUND_IMAGE_URL});
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.title("Ancient Mosaic Lobby")
+
+    st.write("""
+    Valiant seekers, within the Ancient Mosaic Lobby, your quest to uncover hidden truths begins. Heed these sacred tasks:
+
+    Upload the Artefact: Select a file that forms part of our grand mosaic.
+
+    Conceal Your Codex: Submit a unique secret code alongside your artefact.
+
+    Form the Mosaic & Align the Codes: Arrange your artefact and enter your code. Only through perfect harmony will the deeper secrets be sensed.
+
+    Claim the Triumph: Assemble the mosaic and the codes in their correct sequence to unlock a critical clue.
+
+    Unveil the Gateway: If the codes resonate in their destined order, a pivotal hint will be bestowed, pointing the way to the secret chamber's password.
+
+    Embark with wisdom and valor; this chamber's threshold is crossed not by the swift but by the insightful.
+    """)
 
     # File uploader allows user to add up to 24 GIFs
     uploaded_files = st.file_uploader("Upload GIFs", type="gif", accept_multiple_files=True)
@@ -53,11 +87,12 @@ def main():
         # Prompt for pass codes
         pass_codes = []
         for i, uploaded_file in enumerate(uploaded_files):
-            pass_code = st.text_input(f"Enter Pass Code for GIF {i+1}", key=i)
+            file_name = uploaded_file.name
+            pass_code = st.text_input(f"Enter Pass Code for {file_name} (GIF {i+1})", key=i)
             try:
                 pass_codes.append(int(pass_code))
             except ValueError:
-                st.error(f"Invalid Pass Code for GIF {i+1}. Please enter a number.")
+                st.error(f"Invalid Pass Code for {file_name} (GIF {i+1}). Please enter a number.")
                 return
         
         # Process the GIFs
