@@ -51,19 +51,24 @@ def main():
     st.title("Ancient Mosaic Lobby")
 
     st.write("""
-    Valiant seekers, within the Ancient Mosaic Lobby, your quest to uncover hidden truths begins. Heed these sacred tasks:
+    Valiant seekers, within the Ancient Mosaic Lobby, your quest to uncover hidden truths begins. 
+    
+    
+    Heed these sacred tasks:
 
-    Upload the Artefact: Select a file that forms part of our grand mosaic.
+    * Upload the Artefact: Select a file that forms part of our grand mosaic.
 
-    Conceal Your Codex: Submit a unique secret code alongside your artefact.
+    * Conceal Your Codex: Submit a unique secret code alongside your artefact.
 
-    Form the Mosaic & Align the Codes: Arrange your artefact and enter your code. Only through perfect harmony will the deeper secrets be sensed.
+    * Form the Mosaic & Align the Codes: Arrange your artefact and enter your code. Only through perfect harmony will the deeper secrets be sensed.
 
-    Claim the Triumph: Assemble the mosaic and the codes in their correct sequence to unlock a critical clue.
+    * Claim the Triumph: Assemble the mosaic and the codes in their correct sequence to unlock a critical clue.
 
-    Unveil the Gateway: If the codes resonate in their destined order, a pivotal hint will be bestowed, pointing the way to the secret chamber's password.
+    * Unveil the Gateway: If the codes resonate in their destined order, a pivotal hint will be bestowed, pointing the way to the secret chamber's password.
 
-    Embark with wisdom and valor; this chamber's threshold is crossed not by the swift but by the insightful.
+    Embark with wisdom and valor!
+
+    
     """)
 
     # File uploader allows user to add up to 24 GIFs
