@@ -7,8 +7,6 @@ MAX_IMAGES = 24
 IMAGE_WIDTH = 4
 IMAGE_HEIGHT = 6
 
-# Background image placeholder URL
-#BACKGROUND_IMAGE_URL = "https://static.wikia.nocookie.net/venturian-battle-headquarters/images/a/a1/Jungle_Temple.jpg/revision/latest/scale-to-width-down/1200?cb=20170121145737"  # Replace with your actual image URL
 
 def validate_and_extract_frames(uploaded_files, pass_codes):
     # This will hold the extracted frames
@@ -49,19 +47,7 @@ def main():
     # Set page config to widen the app and set the title and favicon
     st.set_page_config(page_title="Ancient Mosaic Lobby", layout="wide")
 
-    # Use custom CSS to set background image
-    #st.markdown(
-        #f"""
-        #<style>
-        #.stApp {{
-            background-image: url({BACKGROUND_IMAGE_URL});
-            background-size: cover;
-        #}}
-        #</style>
-        #""",
-        #unsafe_allow_html=True
-    #)
-
+ 
     st.title("Ancient Mosaic Lobby")
 
     st.write("""
