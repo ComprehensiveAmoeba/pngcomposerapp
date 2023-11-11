@@ -89,17 +89,11 @@ def main():
         # Process the GIFs
         frames = validate_and_extract_frames(uploaded_files, pass_codes)
 
-        # Check if all passcodes are valid
+# Check if all passcodes are valid
 if None not in frames and len(frames) == MAX_IMAGES:
-    st.success(st.secrets["game"]["success_message"])
+    st.success(os.environ["GAME_SUCCESS_MESSAGE"])
 else:
-    st.warning(st.secrets["game"]["alternative_message"])
-
-        # Check if all passcodes are valid
-        if None not in frames and len(frames) == MAX_IMAGES:
-            st.success("You cracked the code, here's another hint: It is Paulsible you could try any of the provided options in our Slack Channel")
-        else:
-            st.warning("Try harder to get an additional hint")
+    st.warning(os.environ["GAME_ALTERNATIVE_MESSAGE"])
 
         # Create the final image
         final_image = create_final_image(frames)
