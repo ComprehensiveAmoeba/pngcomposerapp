@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from PIL import Image, UnidentifiedImageError
 import io
@@ -6,7 +7,6 @@ import io
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
 IMAGE_HEIGHT = 6
-
 
 def validate_and_extract_frames(uploaded_files, pass_codes):
     # This will hold the extracted frames
@@ -47,11 +47,10 @@ def main():
     # Set page config to widen the app and set the title and favicon
     st.set_page_config(page_title="Ancient Mosaic Lobby", layout="wide")
 
- 
-    st.title("Ancient Mosaic Lobby")
+    st.title("The Wokshop")
 
     st.write("""
-    Valiant seekers, within the Ancient Mosaic Lobby, your quest to uncover hidden truths begins. 
+    Valiant seekers, use the unearthed mosaic shard to restore the Ancient Mosaic
     
     
     Heed these sacred tasks:
@@ -85,15 +84,15 @@ def main():
             except ValueError:
                 st.error(f"Invalid Pass Code for {file_name} (GIF {i+1}). Please enter a number.")
                 return
-        
+
         # Process the GIFs
         frames = validate_and_extract_frames(uploaded_files, pass_codes)
 
-# Check if all passcodes are valid
-if None not in frames and len(frames) == MAX_IMAGES:
-    st.success(os.environ["GAME_SUCCESS_MESSAGE"])
-else:
-    st.warning(os.environ["GAME_ALTERNATIVE_MESSAGE"])
+        # Check if all passcodes are valid
+        if None not in frames and len(frames) == MAX_IMAGES:
+            st.success(os.getenv("GAME_SUCCESS_MESSAGE", "Success message not set"))
+        else:
+            st.warning(os.getenv("GAME_ALTERNATIVE_MESSAGE", "Alternative message not set"))
 
         # Create the final image
         final_image = create_final_image(frames)
