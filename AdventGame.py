@@ -11,7 +11,10 @@ import io
 #|  .-.  | ,|  |_.'         |  |   |  .-.  | |  .--' |  .  '.' |  .--' `--'  
 #|  | |  |(_|  |            |  |   |  | |  | |  `---.|  |\  \  |  `---..--.  
 #`--' `--'  `--'            `--'   `--' `--' `------'`--' '--' `------''--'  
-# ****** Hello black hat Shaman!!!You were very smart for coming here, but even this way it won't be that easy to guess the password without reading the full letter unveiled by the mosaic. ******
+# ****** Hello black hat Shaman!!!
+# ****** You were very smart for coming here, 
+# ****** but even this way it won't be that easy to guess the password 
+# ****** without reading the full letter unveiled by the mosaic. 
 
 
 # Constants
@@ -74,7 +77,7 @@ def main():
                 pos_label = f"{file_label} - Position (1-24):"
                 positions.append(st.number_input(pos_label, min_value=1, max_value=24, key=f"pos_{i}"))
             with col2:
-                frame_choice_label = f"Frame Choice:"
+                frame_choice_label = f""
                 frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}", horizontal=True))
 
         if st.button("Craft the Mosaic"):
