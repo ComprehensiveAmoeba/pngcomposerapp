@@ -1,0 +1,16 @@
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    # ... other steps ...
+    - name: Set Environment Variables
+      run: |
+        echo "GAME_SUCCESS_MESSAGE=${{ secrets.GAME_SUCCESS_MESSAGE }}" >> $GITHUB_ENV
+        echo "GAME_ALTERNATIVE_MESSAGE=${{ secrets.GAME_ALTERNATIVE_MESSAGE }}" >> $GITHUB_ENV
+    # ... deployment steps ...
