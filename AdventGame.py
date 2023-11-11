@@ -17,6 +17,7 @@ import io
 # ****** without reading the full letter unveiled by the mosaic. 
 
 
+
 # Constants
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
@@ -81,11 +82,9 @@ def main():
                 frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}", horizontal=True))
 
         if st.button("Craft the Mosaic"):
-            final_image = create_final_image(uploaded_files, positions, frame_choices)
-            st.image(final_image)
-
-            # Check win conditions
-            if check_win_conditions(positions, frame_choices):
+            if len(uploaded_files) == MAX_IMAGES and check_win_conditions(positions, frame_choices):
+                final_image = create_final_image(uploaded_files, positions, frame_choices)
+                st.image(final_image)
                 st.success("The password to open the chamber of screts is one of the options posted in our slack channel, in the same way it was written")
             else:
                 st.warning("Try harder to unveil the decisive hint to the password")
@@ -104,3 +103,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
