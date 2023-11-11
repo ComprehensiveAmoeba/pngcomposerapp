@@ -90,6 +90,12 @@ def main():
         frames = validate_and_extract_frames(uploaded_files, pass_codes)
 
         # Check if all passcodes are valid
+if None not in frames and len(frames) == MAX_IMAGES:
+    st.success(st.secrets["game"]["success_message"])
+else:
+    st.warning(st.secrets["game"]["alternative_message"])
+
+        # Check if all passcodes are valid
         if None not in frames and len(frames) == MAX_IMAGES:
             st.success("You cracked the code, here's another hint: It is Paulsible you could try any of the provided options in our Slack Channel")
         else:
