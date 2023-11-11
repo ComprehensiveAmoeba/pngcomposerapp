@@ -47,27 +47,20 @@ def main():
     # Set page config to widen the app and set the title and favicon
     st.set_page_config(page_title="Ancient Mosaic Lobby", layout="wide")
 
-    st.title("The Wokshop")
+    st.title("The Workshop")
 
     st.write("""
-    Valiant seekers, use the unearthed mosaic shard to restore the Ancient Mosaic
-    
+    Valiant seekers, use the unearthed mosaic shard to restore the Ancient Mosaic.
     
     Heed these sacred tasks:
 
     * Upload the Artefact: Select a file that forms part of our grand mosaic.
-
     * Conceal Your Codex: Submit a unique secret code alongside your artefact.
-
     * Form the Mosaic & Align the Codes: Arrange your artefact and enter your code. Only through perfect harmony will the deeper secrets be sensed.
-
     * Claim the Triumph: Assemble the mosaic and the codes in their correct sequence to unlock a critical clue.
-
     * Unveil the Gateway: If the codes resonate in their destined order, a pivotal hint will be bestowed, pointing the way to the secret chamber's password.
 
     Embark with wisdom and valor!
-
-    
     """)
 
     # File uploader allows user to add up to 24 GIFs
