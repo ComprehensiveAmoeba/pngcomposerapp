@@ -81,23 +81,24 @@ def main():
                 frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}", horizontal=True))
 
         if st.button("Craft the Mosaic"):
+            final_image = create_final_image(uploaded_files, positions, frame_choices)
+            st.image(final_image)
+
             if len(uploaded_files) == MAX_IMAGES and check_win_conditions(positions, frame_choices):
-                final_image = create_final_image(uploaded_files, positions, frame_choices)
-                st.image(final_image)
                 st.success("The password to open the chamber of secrets is one of the options posted in our slack channel, in the same way it was written")
 
-                # Save the final image to a buffer
-                buf = io.BytesIO()
-                final_image.save(buf, format="PNG")
+            # Save the final image to a buffer
+            buf = io.BytesIO()
+            final_image.save(buf, format="PNG")
 
-                # Provide a download link to the final image
-                st.download_button(
-                    label="Download the full mosaic",
-                    data=buf.getvalue(),
-                    file_name="final_image.png",
-                    mime="image/png"
-                )
-            else:
+            # Provide a download link to the final image
+            st.download_button(
+                label="Download the full mosaic",
+                data=buf.getvalue(),
+                file_name="final_image.png",
+                mime="image/png"
+            )
+            if not len(uploaded_files) == MAX_IMAGES or not check_win_conditions(positions, frame_choices):
                 st.warning("Try harder to unveil the decisive hint to the password")
 
 if __name__ == "__main__":
