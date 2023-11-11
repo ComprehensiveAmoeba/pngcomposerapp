@@ -51,9 +51,19 @@ def main():
 
     uploaded_files = st.file_uploader("Upload GIFs", type="gif", accept_multiple_files=True)
 
+    positions = []
+    frame_choices = []
+
     if len(uploaded_files) > 0:
-        positions = [st.number_input(f"Position for GIF {i+1} (1-24)", min_value=1, max_value=24, key=f"pos_{i}") for i in range(len(uploaded_files))]
-        frame_choices = [st.radio(f"Frame Choice for GIF {i+1}", options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}") for i in range(len(uploaded_files))]
+        for i, uploaded_file in enumerate(uploaded_files):
+            file_label = uploaded_file.name
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                pos_label = f"{file_label} - Position (1-24):"
+                positions.append(st.number_input(pos_label, min_value=1, max_value=24, key=f"pos_{i}"))
+            with col2:
+                frame_choice_label = f"Frame Choice:"
+                frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}", horizontal=True))
 
         if st.button("Create Mosaic"):
             final_image = create_final_image(uploaded_files, positions, frame_choices)
