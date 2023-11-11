@@ -17,7 +17,6 @@ import io
 # ****** without reading the full letter unveiled by the mosaic. 
 
 
-
 # Constants
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
@@ -85,22 +84,21 @@ def main():
             if len(uploaded_files) == MAX_IMAGES and check_win_conditions(positions, frame_choices):
                 final_image = create_final_image(uploaded_files, positions, frame_choices)
                 st.image(final_image)
-                st.success("The password to open the chamber of screts is one of the options posted in our slack channel, in the same way it was written")
+                st.success("The password to open the chamber of secrets is one of the options posted in our slack channel, in the same way it was written")
+
+                # Save the final image to a buffer
+                buf = io.BytesIO()
+                final_image.save(buf, format="PNG")
+
+                # Provide a download link to the final image
+                st.download_button(
+                    label="Download the full mosaic",
+                    data=buf.getvalue(),
+                    file_name="final_image.png",
+                    mime="image/png"
+                )
             else:
                 st.warning("Try harder to unveil the decisive hint to the password")
 
-            # Save the final image to a buffer
-            buf = io.BytesIO()
-            final_image.save(buf, format="PNG")
-
-            # Provide a download link to the final image
-            st.download_button(
-                label="Download the full mosaic",
-                data=buf.getvalue(),
-                file_name="final_image.png",
-                mime="image/png"
-            )
-
 if __name__ == "__main__":
     main()
-
