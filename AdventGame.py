@@ -49,7 +49,7 @@ def check_win_conditions(positions, frame_choices):
 def main():
     st.title("GIF Frame Composer")
 
-    uploaded_files = st.file_uploader("Upload GIFs", type="gif", accept_multiple_files=True, max_uploads=MAX_IMAGES)
+    uploaded_files = st.file_uploader("Upload GIFs", type="gif", accept_multiple_files=True)
 
     if len(uploaded_files) > 0:
         positions = [st.number_input(f"Position for GIF {i+1} (1-24)", min_value=1, max_value=24, key=f"pos_{i}") for i in range(len(uploaded_files))]
