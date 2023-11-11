@@ -2,11 +2,23 @@ import streamlit as st
 from PIL import Image, UnidentifiedImageError
 import io
 
+# ('-. .-.                .-') _    ('-. .-.   ('-.  _  .-')     ('-.  ,---. 
+#( OO )  /               (  OO) )  ( OO )  / _(  OO)( \( -O )  _(  OO) |   | 
+#,--. ,--.  ,-.-')       /     '._ ,--. ,--.(,------.,------. (,------.|   | 
+#|  | |  |  |  |OO)      |'--...__)|  | |  | |  .---'|   /`. ' |  .---'|   | 
+#|   .|  |  |  |  \      '--.  .--'|   .|  | |  |    |  /  | | |  |    |   | 
+#|       |  |  |(_/         |  |   |       |(|  '--. |  |_.' |(|  '--. |  .' 
+#|  .-.  | ,|  |_.'         |  |   |  .-.  | |  .--' |  .  '.' |  .--' `--'  
+#|  | |  |(_|  |            |  |   |  | |  | |  `---.|  |\  \  |  `---..--.  
+#`--' `--'  `--'            `--'   `--' `--' `------'`--' '--' `------''--'  
+# ****** Hello black hat Shaman!!!You were very smart for coming here, but even this way it won't be that easy to guess the password without reading the full letter unveiled by the mosaic. ******
+
+
 # Constants
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
 IMAGE_HEIGHT = 6
-FRAME_OPTIONS = {"chukwa": 2, "chak k’an": 1}
+FRAME_OPTIONS = {"chukwa": 2, "chak k’an": 1} 
 CORRECT_CHOICES = {
     8: "chak k’an",
     10: "chak k’an",
@@ -47,9 +59,9 @@ def check_win_conditions(positions, frame_choices):
     return True
 
 def main():
-    st.title("GIF Frame Composer")
+    st.title("Amazonian Workshop")
 
-    uploaded_files = st.file_uploader("Upload GIFs", type="gif", accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Upload mosaic shards", type="gif", accept_multiple_files=True)
 
     positions = []
     frame_choices = []
@@ -65,15 +77,15 @@ def main():
                 frame_choice_label = f"Frame Choice:"
                 frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}", horizontal=True))
 
-        if st.button("Create Mosaic"):
+        if st.button("Craft the Mosaic"):
             final_image = create_final_image(uploaded_files, positions, frame_choices)
             st.image(final_image)
 
             # Check win conditions
             if check_win_conditions(positions, frame_choices):
-                st.success("Choose one of the options posted in our slack channel")
+                st.success("The password to open the chamber of screts is one of the options posted in our slack channel, in the same way it was written")
             else:
-                st.warning("Try harder to unveil the decisive hint")
+                st.warning("Try harder to unveil the decisive hint to the password")
 
             # Save the final image to a buffer
             buf = io.BytesIO()
@@ -81,7 +93,7 @@ def main():
 
             # Provide a download link to the final image
             st.download_button(
-                label="Download the final image",
+                label="Download the full mosaic",
                 data=buf.getvalue(),
                 file_name="final_image.png",
                 mime="image/png"
