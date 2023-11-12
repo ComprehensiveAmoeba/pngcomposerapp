@@ -11,10 +11,23 @@ import io
 #|  .-.  | ,|  |_.'         |  |   |  .-.  | |  .--' |  .  '.' |  .--' `--'  
 #|  | |  |(_|  |            |  |   |  | |  | |  `---.|  |\  \  |  `---..--.  
 #`--' `--'  `--'            `--'   `--' `--' `------'`--' '--' `------''--'  
+
+
 # ****** Hello black hat Shaman!!!
 # ****** You were very smart for coming here, 
 # ****** but even this way it won't be that easy to guess the password 
 # ****** without reading the full letter unveiled by the mosaic. 
+# ****** Good luck with the Thrassvent Quest!
+
+
+#  ______  _______  _______  ______     ______            _______ 
+#(  ____ \(  ___  )(  ___  )(  __  \   (  ___ \ |\     /|(  ____ \
+#| (    \/| (   ) || (   ) || (  \  )  | (   ) )( \   / )| (    \/
+#| |      | |   | || |   | || |   ) |  | (__/ /  \ (_) / | (__    
+#| | ____ | |   | || |   | || |   | |  |  __ (    \   /  |  __)   
+#| | \_  )| |   | || |   | || |   ) |  | (  \ \    ) (   | (      
+#| (___) || (___) || (___) || (__/  )  | )___) )   | |   | (____/\
+#(_______)(_______)(_______)(______/   |/ \___/    \_/   (_______/
 
 
 # Constants
@@ -25,6 +38,7 @@ FRAME_OPTIONS = {"chukwa": 2, "chak k’an": 1}
 CORRECT_CHOICES = {
     8: "chak k’an",
     10: "chak k’an",
+    12: "chak k’an",
     15: "chak k’an",
     16: "chak k’an",
     24: "chak k’an"
