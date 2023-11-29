@@ -30,6 +30,7 @@ import io
 #(_______)(_______)(_______)(______/   |/ \___/    \_/   (_______/
 
 
+
 # Constants
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
@@ -116,6 +117,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
 
