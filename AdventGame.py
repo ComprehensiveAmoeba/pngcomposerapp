@@ -34,7 +34,7 @@ import io
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
 IMAGE_HEIGHT = 6
-FRAME_OPTIONS = {"chukwa": 2, "chak k’an": 1} 
+FRAME_OPTIONS = {"chukwa": 2, "chak k’an": 1}
 CORRECT_CHOICES = {
     8: "chak k’an",
     10: "chak k’an",
@@ -94,31 +94,26 @@ def main():
                 frame_choice_label = f""
                 frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}", horizontal=True))
 
-    if st.button("Craft the Mosaic"):
-        final_image = create_final_image(uploaded_files, positions, frame_choices)
-        st.image(final_image)
+        if st.button("Craft the Mosaic"):
+            final_image = create_final_image(uploaded_files, positions, frame_choices)
+            st.image(final_image)
 
-    if len(uploaded_files) == MAX_IMAGES and check_win_conditions(positions, frame_choices):
-        st.success("As the hidden message of the ancient mosaic unites...")
-        # Additional code for success scenario
-    else:
-        st.warning("Even the mightiest warriors face trials...")
-        # Additional code for non-success scenario
+            if len(uploaded_files) == MAX_IMAGES and check_win_conditions(positions, frame_choices):
+                st.success("As the hidden message of the ancient mosaic unites...")
+                # Save the final image to a buffer
+                buf = io.BytesIO()
+                final_image.save(buf, format="PNG")
 
-
-            # Save the final image to a buffer
-            buf = io.BytesIO()
-            final_image.save(buf, format="PNG")
-
-            # Provide a download link to the final image
-            st.download_button(
-                label="Download the full mosaic",
-                data=buf.getvalue(),
-                file_name="final_image.png",
-                mime="image/png"
-            )
-            if not len(uploaded_files) == MAX_IMAGES or not check_win_conditions(positions, frame_choices):
-                st.warning("Even the mightiest warriors face trials. The mosaic speaks, but your code has not yet found its true echo. Look again, with eyes sharpened by wisdom, and let the hidden message and a decisive hintreveal itself .")
+                # Provide a download link to the final image
+                st.download_button(
+                    label="Download the full mosaic",
+                    data=buf.getvalue(),
+                    file_name="final_image.png",
+                    mime="image/png"
+                )
+            else:
+                st.warning("Even the mightiest warriors face trials...")
 
 if __name__ == "__main__":
     main()
+
