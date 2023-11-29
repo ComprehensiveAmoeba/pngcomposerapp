@@ -73,15 +73,16 @@ def create_final_image(uploaded_files_data):
     return final_img
 
 def check_win_conditions(uploaded_files_data):
+    if len(uploaded_files_data) != MAX_IMAGES:
+        return False
+    positions = [data['position'] for data in uploaded_files_data]
+    if len(set(positions)) != MAX_IMAGES:
+        return False
     for data in uploaded_files_data:
         correct_choice = CORRECT_CHOICES.get(data['position'], "chukwa")
         if FRAME_OPTIONS[data['frame_choice']] != FRAME_OPTIONS[correct_choice]:
             return False
     return True
-
-def are_positions_unique(uploaded_files_data):
-    positions = [data['position'] for data in uploaded_files_data]
-    return len(positions) == len(set(positions))
 
 def main():
     st.title("Amazonian Workshop")
@@ -90,7 +91,7 @@ def main():
 
     uploaded_files_data = []
 
-    if len(uploaded_files) > 0:
+    if uploaded_files:
         for i, uploaded_file in enumerate(uploaded_files):
             file_label = uploaded_file.name
             unique_key = f"{file_label}_{i}"
@@ -102,22 +103,13 @@ def main():
             uploaded_files_data.append({'file': uploaded_file, 'position': position, 'frame_choice': frame_choice})
 
     if st.button("Craft the Mosaic"):
-        if len(uploaded_files) == MAX_IMAGES:
-            if are_positions_unique(uploaded_files_data):
-                if check_win_conditions(uploaded_files_data):
-                    final_image = create_final_image(uploaded_files_data)
-                    st.image(final_image)
-                    st.success("As the hidden message of the ancient mosaic unites...")
-                else:
-                    st.error("The mosaic pieces are not in the correct order. Try again.")
-            else:
-                st.error("There are overlapping positions. Each image must have a unique position.")
+        if check_win_conditions(uploaded_files_data):
+            final_image = create_final_image(uploaded_files_data)
+            st.image(final_image)
+            st.success("As the hidden message of the ancient mosaic unites...")
         else:
-            st.error("You need to upload exactly 24 images to craft the mosaic.")
+            st.error("The mosaic cannot be crafted. Ensure you have 24 unique images, each with a unique position, and the correct frame choices as per the ancient code.")
 
 if __name__ == "__main__":
     main()
-
-
-
 
