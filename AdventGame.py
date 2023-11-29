@@ -99,19 +99,27 @@ def main():
                 frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{unique_key}", horizontal=True))
 
     if st.button("Craft the Mosaic"):
-        # Only proceed if the correct number of images are uploaded
         if len(uploaded_files) == MAX_IMAGES:
             final_image = create_final_image(uploaded_files, positions, frame_choices)
             st.image(final_image)
 
-            # Now check if the frame conditions are met
             if check_win_conditions(positions, frame_choices):
                 st.success("As the hidden message of the ancient mosaic unites...")
-                # Additional success actions
+                # Save the final image to a buffer
+                buf = io.BytesIO()
+                final_image.save(buf, format="PNG")
+
+                # Provide a download link to the final image
+                st.download_button(
+                    label="Download the full mosaic",
+                    data=buf.getvalue(),
+                    file_name="final_image.png",
+                    mime="image/png"
+                )
             else:
-                st.warning("Even the mightiest warriors face trials...")
+                st.error("The mosaic pieces are not in the correct order. Try again.")
         else:
-            st.warning("The mosaic is incomplete...")
+            st.error("You need to upload exactly 24 images to craft the mosaic.")
 
 if __name__ == "__main__":
     main()
