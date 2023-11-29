@@ -99,7 +99,7 @@ def main():
             st.image(final_image)
 
             if len(uploaded_files) == MAX_IMAGES and check_win_conditions(positions, frame_choices):
-                st.success("The password to open the chamber of secrets is one of the options posted in our slack channel, in the same way it was written")
+                st.success("As the hidden message of the ancient mosaic unites under watchful eyes, the gods whisper in ancient tongues: Seek the password in the sacred scrolls of our Slack channels, where one of the options contain the exact same words of wisdom and power quietly.")
 
             # Save the final image to a buffer
             buf = io.BytesIO()
@@ -113,7 +113,7 @@ def main():
                 mime="image/png"
             )
             if not len(uploaded_files) == MAX_IMAGES or not check_win_conditions(positions, frame_choices):
-                st.warning("Try harder to unveil the decisive hint to the password")
+                st.warning("Even the mightiest warriors face trials. The mosaic speaks, but your code has not yet found its true echo. Look again, with eyes sharpened by wisdom, and let the hidden message and a decisive hintreveal itself .")
 
 if __name__ == "__main__":
     main()
