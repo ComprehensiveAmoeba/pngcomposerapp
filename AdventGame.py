@@ -33,7 +33,6 @@ import io
 
 
 
-
 # Constants
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
@@ -103,12 +102,16 @@ def main():
             uploaded_files_data.append({'file': uploaded_file, 'position': position, 'frame_choice': frame_choice})
 
     if st.button("Craft the Mosaic"):
-        if check_win_conditions(uploaded_files_data):
+        if uploaded_files_data:
             final_image = create_final_image(uploaded_files_data)
             st.image(final_image)
-            st.success("As the hidden message of the ancient mosaic unites...")
+
+            if check_win_conditions(uploaded_files_data):
+                st.success("As the mosaic unites under watchful eyes, the gods whisper in ancient tongues: Seek the password in the sacred scrolls of your tribe's Slack channel, where three unique words of wisdom and power quietly reside")
+            else:
+                st.error("You hear a whisper - it was just a bird. Even the mightiest warriors face trials. The mosaic speaks, but your code has not yet found its true echo. Look again, with eyes sharpened by wisdom, and let the hidden message reveal itself.")
         else:
-            st.error("The mosaic cannot be crafted. Ensure you have 24 unique images, each with a unique position, and the correct frame choices as per the ancient code.")
+            st.error("You hear a whisper - it was just a bird. Even the mightiest warriors face trials. The mosaic speaks, but your code has not yet found its true echo. Look again, with eyes sharpened by wisdom, and let the hidden message reveal itself.")
 
 if __name__ == "__main__":
     main()
