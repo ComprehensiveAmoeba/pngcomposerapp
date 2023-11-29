@@ -79,6 +79,10 @@ def check_win_conditions(uploaded_files_data):
             return False
     return True
 
+def are_positions_unique(uploaded_files_data):
+    positions = [data['position'] for data in uploaded_files_data]
+    return len(positions) == len(set(positions))
+
 def main():
     st.title("Amazonian Workshop")
 
@@ -99,18 +103,21 @@ def main():
 
     if st.button("Craft the Mosaic"):
         if len(uploaded_files) == MAX_IMAGES:
-            if check_win_conditions(uploaded_files_data):
-                final_image = create_final_image(uploaded_files_data)
-                st.image(final_image)
-                st.success("As the hidden message of the ancient mosaic unites...")
-                # Additional success actions
+            if are_positions_unique(uploaded_files_data):
+                if check_win_conditions(uploaded_files_data):
+                    final_image = create_final_image(uploaded_files_data)
+                    st.image(final_image)
+                    st.success("As the hidden message of the ancient mosaic unites...")
+                else:
+                    st.error("The mosaic pieces are not in the correct order. Try again.")
             else:
-                st.error("The mosaic pieces are not in the correct order. Try again.")
+                st.error("There are overlapping positions. Each image must have a unique position.")
         else:
             st.error("You need to upload exactly 24 images to craft the mosaic.")
 
 if __name__ == "__main__":
     main()
+
 
 
 
