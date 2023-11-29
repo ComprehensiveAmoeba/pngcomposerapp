@@ -31,6 +31,7 @@ import io
 
 
 
+
 # Constants
 MAX_IMAGES = 24
 IMAGE_WIDTH = 4
@@ -87,13 +88,14 @@ def main():
     if len(uploaded_files) > 0:
         for i, uploaded_file in enumerate(uploaded_files):
             file_label = uploaded_file.name
+            unique_key = f"{file_label}_{i}"  # Using file name and index for unique key
             col1, col2 = st.columns([3, 1])
             with col1:
                 pos_label = f"{file_label} - Position (1-24):"
-                positions.append(st.number_input(pos_label, min_value=1, max_value=24, key=f"pos_{i}"))
+                positions.append(st.number_input(pos_label, min_value=1, max_value=24, key=f"pos_{unique_key}"))
             with col2:
                 frame_choice_label = f""
-                frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}", horizontal=True))
+                frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{unique_key}", horizontal=True))
 
         if st.button("Craft the Mosaic"):
             final_image = create_final_image(uploaded_files, positions, frame_choices)
