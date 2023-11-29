@@ -94,9 +94,9 @@ def main():
                 frame_choice_label = f""
                 frame_choices.append(st.radio(frame_choice_label, options=list(FRAME_OPTIONS.keys()), key=f"choice_{i}", horizontal=True))
 
-        if st.button("Craft the Mosaic"):
-    final_image = create_final_image(uploaded_files, positions, frame_choices)
-    st.image(final_image)
+    if st.button("Craft the Mosaic"):
+        final_image = create_final_image(uploaded_files, positions, frame_choices)
+        st.image(final_image)
 
     if len(uploaded_files) == MAX_IMAGES and check_win_conditions(positions, frame_choices):
         st.success("As the hidden message of the ancient mosaic unites...")
