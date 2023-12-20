@@ -107,7 +107,7 @@ def main():
             st.image(final_image)
 
             if check_win_conditions(uploaded_files_data):
-                st.success("As the mosaic unites under watchful eyes, the gods whisper in ancient tongues: Seek the password in the sacred scrolls of your tribe's Slack channel, where three unique words of wisdom and power quietly reside")
+                st.success("As the mosaic unites under watchful eyes, the gods whisper in ancient tongues: Seek the password in the sacred pinned section of your tribe's Slack channel, where three unique words of wisdom and power quietly reside")
             else:
                 st.error("You hear a whisper - it was just a bird. Even the mightiest warriors face trials. The mosaic speaks, but your code has not yet found its true echo. Look again, with eyes sharpened by wisdom, and let the hidden message reveal itself.")
         else:
